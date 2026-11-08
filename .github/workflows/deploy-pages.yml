@@ -1,4 +1,5 @@
-name: Deploy PocketLedger to GitHub Pages
+
+name: Deploy Static Apps to GitHub Pages
 
 on:
   push:
@@ -20,17 +21,33 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v6
-      - name: Configure Pages
+
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Verify prebuilt site
-        run: test -s dist/index.html
+
+      - name: Prepare static applications
+        run: |
+          mkdir -p site
+
+          for app in */; do
+            if [ -f "${app}index.html" ]; then
+              echo "Adding application: ${app}"
+              cp -a "$app" site/
+            fi
+          done
+
+          test -n "$(find site -name index.html -print -quit)"
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: site
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f6f7f4" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="PocketLedger" />
+    <meta name="description" content="A personal expense tracker that stores your data locally in your browser." />
+    <title>PocketLedger — your money, in focus</title>
+    <script>
+      // Apply the last-used theme before first paint to avoid a light flash in dark mode.
+      try { var t = localStorage.getItem('pocketledger-theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="./assets/index-DVFslxMb.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Bakbbcgk.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
